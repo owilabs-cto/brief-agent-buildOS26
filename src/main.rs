@@ -43,6 +43,8 @@ async fn main() -> Result<()> {
         .route("/session", post(handlers::session::create_session))
         .route("/tools/search_gmail", post(handlers::search_gmail::search_gmail))
         .route("/tools/verify_claim", post(handlers::verify_claim::verify_claim))
+        .route("/tools/web_search", post(handlers::web_search::web_search))
+        .route("/tools/web_fetch", post(handlers::web_fetch::web_fetch))
         .with_state(state)
         .layer(CorsLayer::permissive())
         .layer(TraceLayer::new_for_http());
