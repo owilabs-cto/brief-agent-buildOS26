@@ -42,6 +42,7 @@ async fn main() -> Result<()> {
         .route("/health", get(health))
         .route("/session", post(handlers::session::create_session))
         .route("/tools/search_gmail", post(handlers::search_gmail::search_gmail))
+        .route("/tools/verify_claim", post(handlers::verify_claim::verify_claim))
         .with_state(state)
         .layer(CorsLayer::permissive())
         .layer(TraceLayer::new_for_http());
