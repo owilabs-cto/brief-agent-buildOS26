@@ -69,7 +69,7 @@ async fn main() -> Result<()> {
     info!(count = docs.len(), "loaded local docs");
 
     let http = reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(20))
+        .timeout(std::time::Duration::from_secs(180))
         .build()
         .context("build http client")?;
 
@@ -100,6 +100,7 @@ async fn main() -> Result<()> {
         .route("/tools/linear_query", post(handlers::linear_query::linear_query))
         .route("/tools/local_docs_search", post(handlers::local_docs_search::local_docs_search))
         .route("/slack/commands/brief", post(handlers::slack::handle_brief_command))
+        .route("/slack/brief", post(handlers::slack::handle_brief_command))
         .route(
             "/internal/voice/webhook/openai-realtime",
             post(handlers::webhook::openai_realtime::handle_webhook),

@@ -169,8 +169,11 @@ async fn run_brief_pipeline(
         .unwrap_or_default();
 
     // 2. Main Slack message
+    // Slack hard limit is 4000 chars on chat.postMessage / chat.update.
+    // Reserve ~500 chars for header + footer + DNC block; cap brief at 3000.
+    let brief_truncated = truncate_for_slack(&brief_text, 3000);
     let dnc_block = render_dnc_block(&do_not_claim);
-    let slack_body_prefix = format!("*Brief: {fund}*\n\n{brief_text}\n{dnc_block}");
+    let slack_body_prefix = format!("*Brief: {fund}*\n\n{brief_truncated}\n{dnc_block}");
     let slack_stats_prefix = format!(
         "Brief in {elapsed}s · {tool_calls_total} tool calls · {grounded_claims} grounded"
     );
@@ -179,7 +182,7 @@ async fn run_brief_pipeline(
     let main_ts = state.slack.post_message(&channel, &main_text, None).await?;
 
     // 3. Threaded audit trail
-    let audit_md = render_audit_trail(&audit_trail);
+    let audit_md = truncate_for_slack(&render_audit_trail(&audit_trail), 3500);
     if !audit_md.is_empty() {
         let _ = state
             .slack
@@ -252,6 +255,17 @@ fn render_dnc_block(items: &[Value]) -> String {
         let st = item["state"].as_str().unwrap_or("?");
         out.push_str(&format!("• `{cap}` — Linear `{tkt}` is *{st}*\n"));
     }
+    out
+}
+
+/// Slack chat.postMessage / chat.update reject bodies > 4000 chars.
+/// Truncate at a UTF-8 char boundary, appending a marker.
+fn truncate_for_slack(s: &str, max_chars: usize) -> String {
+    if s.chars().count() <= max_chars {
+        return s.to_string();
+    }
+    let mut out: String = s.chars().take(max_chars.saturating_sub(50)).collect();
+    out.push_str("\n\n…_(truncated — see full brief in thread)_");
     out
 }
 
