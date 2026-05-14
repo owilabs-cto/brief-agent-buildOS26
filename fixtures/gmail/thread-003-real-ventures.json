@@ -1,0 +1,26 @@
+{
+  "thread_id": "QgrcJHsNlSWZdpgxBzXDzHqHHVNgvSsxctL",
+  "permalink": "https://mail.google.com/mail/u/3/#label/RealVenture/QgrcJHsNlSWZdpgxBzXDzHqHHVNgvSsxctL",
+  "subject": "Pitch Deck OWI Labs",
+  "labels": ["RealVenture"],
+  "participants": [
+    "Frederik Gauthier <fg@owilabs.com>",
+    "Phil <philgj@...> (Real Ventures contact — exact email not visible in preview)"
+  ],
+  "first_message_date": "2026-04-17T10:33:00-04:00",
+  "last_message_date": "2026-04-17T10:33:00-04:00",
+  "message_count": 1,
+  "recency_flag": "fresh",
+  "extracted_at": "2026-05-14T15:13:00Z",
+  "vc_intent_note": "One-way thread: pitch deck sent to Phil (Real Ventures contact) on 2026-04-17. No reply received. 27 days since send — within fresh window but stalled. For VC brief, agent should flag: 'Pitch deck delivered, no reply in 27 days. Either deal cold or partner unavailable — verify before next outreach.' Good FM3 signal: thread exists but stale on the response side.",
+  "messages": [
+    {
+      "msg_id": "thread-003-msg-1",
+      "from": "Frederik Gauthier <fg@owilabs.com>",
+      "to": ["philgj"],
+      "date": "2026-04-17T10:33:00-04:00",
+      "body_verbatim": "Bonjour Phil,\n\nComme convenu, voici notre deck\n\nOWI Labs est une plateforme d'intelligence organisationnelle. On aide les grandes entreprises à comprendre comment le travail se passe vraiment à l'intérieur de leurs équipes, pas selon l'organigramme, mais dans la réalité opérationnelle.\n\nConcrètement, on combine des entretiens structurés avec les employés et un jumeau numérique de l'organisation pour faire remonter les goulets d'étranglement, les inefficacités, et les opportunités d'automatisation. Le tout est livré sous forme d'un rapport de diagnostic clair avec des recommandations prioritaires pour les leaders.\n\nC'est particulièrement utile pour les entreprises qui adoptent l'IA, qui restructurent, ou qui veulent simplement savoir où concentrer leurs efforts avant de prendre de grandes décisions sur leurs effectifs.\n\nJe reste disponible pour la suite\n\nMerci\n\n--\nFred Gauthier\nCEO\nOWI Labs",
+      "attachments": ["OWI Labs - 2026 Pitch Deck.pdf"]
+    }
+  ]
+}
