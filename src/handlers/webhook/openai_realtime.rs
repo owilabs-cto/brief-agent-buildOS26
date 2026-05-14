@@ -1,13 +1,3 @@
-//! Handler for `POST /internal/voice/webhook/openai-realtime`.
-//!
-//! 1. (Optional, if APP__OPENAI_REALTIME__WEBHOOK_SECRET set) verify HMAC.
-//! 2. Parse envelope, extract `x-audit-call-id` from sip_headers[].
-//! 3. Look up BriefContext from the in-memory registry.
-//! 4. POST `/accept` with vc_brief_workflow instructions + end_call tool.
-//!
-//! 200 is returned immediately; the /accept POST runs off the response
-//! path so OpenAI's webhook timeout doesn't fire.
-
 use axum::{
     extract::State,
     http::{HeaderMap, StatusCode},

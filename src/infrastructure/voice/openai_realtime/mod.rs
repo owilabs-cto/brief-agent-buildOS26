@@ -1,15 +1,3 @@
-//! Slim OpenAI Realtime SIP adapter for OWI-106.
-//!
-//! Covers exactly what the hackathon demo needs:
-//! - Place an outbound Twilio call bridged to OpenAI SIP
-//! - Accept the incoming SIP webhook with prepared brief as instructions
-//! - Twilio status callbacks for Slack footer edits
-//!
-//! Out of scope (deferred): WSS event loop, end_call tool handler,
-//! voicemail detection, audit transcript persistence. The audit-agent
-//! production module has all of that; here we keep the surface minimal
-//! and rely on Twilio TimeLimit + caller hangup for termination.
-
 pub mod client;
 pub mod signature;
 pub mod vc_brief_workflow;

@@ -13,8 +13,8 @@ use tracing::{info, warn};
 const OPENAI_URL: &str = "https://api.openai.com/v1/responses";
 const DEFAULT_MODEL: &str = "gpt-5.5-2026-04-23";
 const MAX_ROUNDS: usize = 3;
-const TOTAL_TIMEOUT: Duration = Duration::from_secs(30);
-const HTTP_TIMEOUT: Duration = Duration::from_secs(30);
+const TOTAL_TIMEOUT: Duration = Duration::from_secs(60);
+const HTTP_TIMEOUT: Duration = Duration::from_secs(60);
 
 const SEVEN_LAWS_PROMPT: &str = r#"You are Fred's pre-meeting intelligence agent. Before any investor meeting, you do four things automatically:
 

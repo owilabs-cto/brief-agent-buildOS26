@@ -1,14 +1,3 @@
-//! Webhook signature verification for OpenAI Realtime SIP webhooks.
-//!
-//! Three headers carry the signature:
-//!   - `webhook-id`         — opaque unique id of the delivery
-//!   - `webhook-timestamp`  — Unix seconds (string)
-//!   - `webhook-signature`  — one or more `v1,<base64>` values, space-separated
-//!
-//! Signed payload = `{webhook-id}.{webhook-timestamp}.{body}`. MAC is
-//! HMAC-SHA256 keyed by the project's webhook secret (raw bytes OR the
-//! base64-decoded suffix of `whsec_<base64>` — both are tried).
-
 use anyhow::{Context, Result, bail};
 use axum::http::HeaderMap;
 use base64::Engine;

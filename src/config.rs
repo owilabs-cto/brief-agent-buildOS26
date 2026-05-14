@@ -1,11 +1,3 @@
-//! Env-loaded configuration for brief-agent.
-//!
-//! Loaded once at startup from environment (with `.env` via dotenvy).
-//! Missing values are tolerated where possible — handlers gate themselves
-//! on the env vars they need and return 503 / fall back when absent. The
-//! `/brief` endpoint requires only `APP__OPENAI__API_KEY`. The Slack +
-//! voice pipeline requires the Slack / Twilio / OpenAI Realtime trio.
-
 use std::env;
 
 #[derive(Clone, Debug)]
@@ -90,9 +82,6 @@ impl Settings {
 
         let frederik_phone = env::var("APP__OWI_FREDERIK_PHONE").unwrap_or_default();
 
-        // Default ON if a secret is set, OFF otherwise (so local-only
-        // demos without a webhook secret still work — ngrok URL acts as
-        // the obscurity shield).
         let verify_webhook_signature = env::var("APP__OPENAI_REALTIME__VERIFY_SIGNATURE")
             .map(|v| v == "true" || v == "1")
             .unwrap_or(!openai_realtime.webhook_secret.is_empty());

@@ -1,10 +1,3 @@
-//! REST surface for OpenAI Realtime SIP + the small Twilio bits we need.
-//!
-//! Three responsibilities for OWI-106:
-//! 1. `POST .../Calls.json` — outbound Twilio call that bridges to OpenAI SIP.
-//! 2. `POST /v1/realtime/calls/{call_id}/accept` — wire prepared brief into the session.
-//! 3. `POST /v1/realtime/calls/{call_id}/hangup` — clean teardown.
-
 use anyhow::{Context, Result, bail};
 use serde::Serialize;
 use serde_json::Value;
@@ -32,10 +25,6 @@ impl OpenAIRealtimeClient {
         }
     }
 
-    /// Place an outbound PSTN call via Twilio. Returns Twilio's parent
-    /// CA SID and the orchestrator-generated `audit_call_id` UUID stamped
-    /// on the SIP URI (joined back via the SIP-header on the OpenAI
-    /// incoming webhook).
     pub async fn twilio_create_outbound_call(
         &self,
         to_e164: &str,
@@ -148,10 +137,6 @@ pub struct TwilioOutboundCall {
     pub audit_call_id: Uuid,
 }
 
-/// Payload for `POST /v1/realtime/calls/{call_id}/accept`. `voice` and
-/// `turn_detection` MUST live under `audio.output` / `audio.input` —
-/// extras at top level are silently dropped and the session boots without
-/// VAD, so OpenAI BYEs the SIP leg within ~1s.
 #[derive(Debug, Serialize)]
 pub struct AcceptCallBody<'a> {
     #[serde(rename = "type")]

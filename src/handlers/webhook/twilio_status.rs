@@ -1,16 +1,3 @@
-//! Handler for `POST /internal/voice/webhook/twilio/status`.
-//!
-//! Twilio fires this for each subscribed event (`initiated`, `ringing`,
-//! `answered`, `completed`). We don't get audit_call_id directly — Twilio
-//! only knows about the parent CA SID. So we walk the BriefContexts map
-//! looking for a context that's still pending; the Slack channel + ts on
-//! it are what we update.
-//!
-//! For OWI-106 v1 the linking is by side-effect: only one call is
-//! in-flight at a time (single founder, single demo). Multi-call concurrent
-//! support would need a parent_sid → audit_call_id map populated at
-//! outbound-call-place time.
-
 use axum::{
     Form,
     extract::State,
@@ -45,8 +32,6 @@ pub async fn handle_status(
         "twilio status callback"
     );
 
-    // Find the most recently-inserted brief context. Single-tenant demo:
-    // there's only one in-flight call at a time.
     let entry = state
         .brief_contexts
         .iter()

@@ -1,8 +1,3 @@
-//! Slack signature verification + post/update message client.
-//!
-//! Mirrors the audit-agent's `infrastructure/slack.rs` and adds
-//! `update_message` (chat.update) for the live Twilio-status footer edits.
-
 use anyhow::{Context, Result, bail};
 use hmac::{Hmac, Mac};
 use reqwest::Client;

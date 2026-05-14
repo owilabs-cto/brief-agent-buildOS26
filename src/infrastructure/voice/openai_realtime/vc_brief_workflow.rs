@@ -1,14 +1,3 @@
-//! Phone-agent instructions for `workflow_id = "vc-brief-v1"`.
-//!
-//! Modeled on audit-agent's `workflow_loader::REALTIME_SECTIONS` (the
-//! 145-line cookbook skeleton). Adapted for VC brief delivery:
-//!
-//! - English (not French)
-//! - Read prepared `phone_brief` verbatim
-//! - Drill-down answered from `drill_down_facts` only (NO research tools)
-//! - Tier-prefixed numbers, verbatim DO-NOT-CLAIM lines
-//! - Tool surface: `end_call` only
-
 use serde_json::{Value, json};
 
 pub struct BriefInstructions {

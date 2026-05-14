@@ -1,12 +1,3 @@
-//! Slack slash command handler for `/brief`.
-//!
-//! Mirrors the audit-agent's `handle_test_audit_command` flow:
-//! 1. HMAC verify
-//! 2. Parse SlackSlashCommand
-//! 3. Return in_channel ack (within Slack's 3-second window)
-//! 4. Spawn async task: POST self `/brief`, post Slack main + threaded
-//!    audit trail, place outbound Twilio call, stash BriefContext
-
 use axum::{
     Json,
     body::Bytes,
@@ -110,7 +101,6 @@ async fn run_brief_pipeline(
     user_id: String,
     fund: String,
 ) -> anyhow::Result<()> {
-    // 1. POST self /brief
     let brief_url = format!("{}/brief", state.settings.brief_self_url);
     let started = std::time::Instant::now();
     let brief_resp = state
@@ -168,9 +158,6 @@ async fn run_brief_pipeline(
         .cloned()
         .unwrap_or_default();
 
-    // 2. Main Slack message
-    // Slack hard limit is 4000 chars on chat.postMessage / chat.update.
-    // Reserve ~500 chars for header + footer + DNC block; cap brief at 3000.
     let brief_truncated = truncate_for_slack(&brief_text, 3000);
     let dnc_block = render_dnc_block(&do_not_claim);
     let slack_body_prefix = format!("*Brief: {fund}*\n\n{brief_truncated}\n{dnc_block}");
@@ -181,7 +168,6 @@ async fn run_brief_pipeline(
     let main_text = format!("{slack_body_prefix}\n\n_{slack_stats_prefix} · {initial_status}_");
     let main_ts = state.slack.post_message(&channel, &main_text, None).await?;
 
-    // 3. Threaded audit trail
     let audit_md = truncate_for_slack(&render_audit_trail(&audit_trail), 3500);
     if !audit_md.is_empty() {
         let _ = state
@@ -190,7 +176,6 @@ async fn run_brief_pipeline(
             .await;
     }
 
-    // 4. Place outbound Twilio call
     let dnc_lines: Vec<String> = do_not_claim
         .iter()
         .map(|item| {
@@ -258,8 +243,6 @@ fn render_dnc_block(items: &[Value]) -> String {
     out
 }
 
-/// Slack chat.postMessage / chat.update reject bodies > 4000 chars.
-/// Truncate at a UTF-8 char boundary, appending a marker.
 fn truncate_for_slack(s: &str, max_chars: usize) -> String {
     if s.chars().count() <= max_chars {
         return s.to_string();
