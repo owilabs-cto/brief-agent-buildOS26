@@ -1,0 +1,15 @@
+[package]
+name = "brief-agent-buildos26"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.102"
+axum = { version = "0.8.6", features = ["macros"] }
+reqwest = { version = "0.12.24", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.149"
+tokio = { version = "1.50.0", features = ["macros", "net", "rt-multi-thread", "signal", "time"] }
+tower-http = { version = "0.6.6", features = ["cors", "limit", "set-header", "trace"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter", "fmt", "json"] }
