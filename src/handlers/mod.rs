@@ -1,3 +1,5 @@
+pub mod linear_query;
+pub mod local_docs_search;
 pub mod search_gmail;
 pub mod session;
 pub mod verify_claim;

@@ -20,6 +20,8 @@ use tracing_subscriber::EnvFilter;
 #[derive(Clone)]
 pub struct AppState {
     pub fixtures: Arc<Vec<Value>>,
+    pub docs: Arc<Vec<tools::local_docs_loader::LoadedDoc>>,
+    pub http: reqwest::Client,
 }
 
 #[tokio::main]
@@ -36,7 +38,20 @@ async fn main() -> Result<()> {
     let fixtures = tools::gmail_fixtures::load_fixtures(&fixtures_dir)
         .context("load gmail fixtures")?;
     info!(count = fixtures.len(), dir = %fixtures_dir.display(), "loaded gmail fixtures");
-    let state = AppState { fixtures: Arc::new(fixtures) };
+
+    let docs = tools::local_docs_loader::load_all().context("load local docs")?;
+    info!(count = docs.len(), "loaded local docs");
+
+    let http = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(20))
+        .build()
+        .context("build http client")?;
+
+    let state = AppState {
+        fixtures: Arc::new(fixtures),
+        docs: Arc::new(docs),
+        http,
+    };
 
     let app = Router::new()
         .route("/health", get(health))
@@ -45,6 +60,8 @@ async fn main() -> Result<()> {
         .route("/tools/verify_claim", post(handlers::verify_claim::verify_claim))
         .route("/tools/web_search", post(handlers::web_search::web_search))
         .route("/tools/web_fetch", post(handlers::web_fetch::web_fetch))
+        .route("/tools/linear_query", post(handlers::linear_query::linear_query))
+        .route("/tools/local_docs_search", post(handlers::local_docs_search::local_docs_search))
         .with_state(state)
         .layer(CorsLayer::permissive())
         .layer(TraceLayer::new_for_http());
