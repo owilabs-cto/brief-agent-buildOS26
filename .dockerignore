@@ -1,0 +1,10 @@
+target/
+.env
+.env.*
+.git/
+.gitignore
+web/node_modules/
+Dockerfile
+.dockerignore
+DEPLOY.md
+README.md
