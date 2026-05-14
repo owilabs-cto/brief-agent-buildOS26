@@ -1,7 +1,10 @@
+pub mod brief;
 pub mod linear_query;
 pub mod local_docs_search;
 pub mod search_gmail;
 pub mod session;
+pub mod slack;
 pub mod verify_claim;
 pub mod web_fetch;
 pub mod web_search;
+pub mod webhook;

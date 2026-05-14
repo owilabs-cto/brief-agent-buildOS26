@@ -4,20 +4,29 @@ Voice-first VC meeting prep that compresses the 50–100h of fund/partner/portfo
 
 Built for the Telus Most Trustworthy Agentic System cash prize, 2026-05-14.
 
-## Architecture
+## Architecture (OWI-106 — Slack-first pivot)
 
-- **OpenAI Realtime** (WebRTC) — conversational layer, browser mic → agent
-- **5 data tools** (Rust/Axum, port 3030):
+- **`/brief`** (Rust/Axum) — Responses-API orchestrator. `gpt-5.5`, `reasoning.effort=medium`, 7-LAWS system prompt, parallel function-calling across the 6 data tools, structured-output JSON `{brief, phone_brief, drill_down_facts, audit_trail, do_not_claim, warnings}`.
+- **`/slack/commands/brief`** — Slack slash command receiver. HMAC-verified. Calls `/brief`, posts to Slack (main message + threaded audit trail), then places an outbound Twilio call bridged to OpenAI Realtime SIP with the prepared brief baked into the session instructions.
+- **`/internal/voice/webhook/openai-realtime`** — receives `realtime.call.incoming` from OpenAI, joins back to the prepared brief via the SIP `x-audit-call-id` header, calls `/accept` with vc_brief instructions + `end_call` tool.
+- **`/internal/voice/webhook/twilio/status`** — receives Twilio status callbacks (`initiated` / `ringing` / `answered` / `completed`), updates the Slack message footer through Ringing → Connected → Call ended.
+- **6 data tools** (same binary):
   - `search_gmail` — recency-flagged threads (>90d = historical)
-  - `web_search` — fund / partner / portfolio queries
+  - `web_search` — fund / partner / portfolio queries (Tavily + DDG fallback)
   - `web_fetch` — URL drill-down
   - `linear_query` — scoped to Multi-provider voice agent + PLAN-002 projects only
   - `local_docs_search` — primary-source local corpus
-- **3-tier verifier** (`verify_claim`) — gates every sentence; LAW #0 means *no source → no statement*
-  - Tier 1: press / SEC primary source
-  - Tier 2: inferred from portfolio or local_docs primary source
-  - Tier 3: estimated with explicit uncertainty
-- **`/session`** — mints OpenAI Realtime ephemeral keys
+  - `verify_claim` — 3-tier confidence verifier (Tier 1 / 2 / 3)
+- **`/session`** — legacy WebRTC ephemeral-key endpoint. Retained but unused after the Slack pivot.
+
+## Demo runtime (laptop + ngrok)
+
+```sh
+ngrok http --url <reserved-domain>.ngrok-free.dev 8080
+APP__PORT=8080 cargo run
+```
+
+Wire the Slack manifest's `/brief` Request URL + OpenAI Realtime webhook + Twilio outbound status callback to the ngrok HTTPS URL. See `.env.example` for the full env-var list.
 
 ## Charter — 7 Guarantees
 
