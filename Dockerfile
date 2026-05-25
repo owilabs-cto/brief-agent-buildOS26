@@ -32,6 +32,8 @@ COPY web ./web
 
 USER app
 
+ENV APP__PORT=3030
+
 EXPOSE 3030
 
 HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:3030/health || exit 1

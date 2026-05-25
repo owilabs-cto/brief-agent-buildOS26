@@ -4,6 +4,14 @@ Voice-first VC meeting prep that compresses the 50–100h of fund/partner/portfo
 
 Built for the Telus Most Trustworthy Agentic System cash prize, 2026-05-14.
 
+## Setup with Claude Code
+
+Clone the repo, open it in [Claude Code](https://claude.com/claude-code) (or any agent that reads `AGENTS.md`: Codex, Cursor, Copilot, and others), and paste:
+
+> Set this project up and run it end to end, following AGENTS.md. Walk me through each API key I need and where to get it, then start it and confirm /health is green.
+
+The agent reads [`AGENTS.md`](AGENTS.md) and drives the rest: toolchain check, `.env` scaffolding, build, run, health check, and wiring the Slack, OpenAI Realtime, and Twilio webhooks through ngrok. You only supply the keys when asked.
+
 ## Architecture (Slack-first pivot)
 
 - **`/brief`** (Rust/Axum) — Responses-API orchestrator. `gpt-5.5`, `reasoning.effort=medium`, 7-LAWS system prompt, parallel function-calling across the 6 data tools, structured-output JSON `{brief, phone_brief, drill_down_facts, audit_trail, do_not_claim, warnings}`.
@@ -38,6 +46,6 @@ LAW #0 (sourcing absolute) + 6 mitigations against the failure modes the agent m
 
 ```sh
 cargo run
-# server on http://localhost:3030
-curl localhost:3030/health   # → {"ok":true}
+# server on http://localhost:8080  (APP__PORT, default 8080)
+curl localhost:8080/health   # → {"ok":true}
 ```
