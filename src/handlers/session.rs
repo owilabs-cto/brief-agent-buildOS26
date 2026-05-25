@@ -19,8 +19,20 @@ pub async fn create_session() -> impl IntoResponse {
         "session": {
             "type": "realtime",
             "model": "gpt-realtime-2",
-            "voice": "marin",
-            "modalities": ["text", "audio"],
+            "audio": {
+                "input": {
+                    "turn_detection": {
+                        "type": "server_vad",
+                        "create_response": true,
+                        "interrupt_response": true
+                    },
+                    "transcription": {
+                        "model": "gpt-realtime-whisper",
+                        "language": "fr"
+                    }
+                },
+                "output": { "voice": "marin" }
+            }
         }
     });
 
