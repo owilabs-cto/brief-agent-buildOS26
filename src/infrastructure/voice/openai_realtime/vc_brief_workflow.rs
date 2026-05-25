@@ -115,7 +115,7 @@ pub fn end_call_tool_schema() -> Value {
     json!({
         "type": "function",
         "name": "end_call",
-        "description": "Terminate the call. Use when Frederik signals close (thanks / got it / we're good / drive safe), or asks to stop. After calling end_call, stay silent.",
+        "description": "Terminate the call. Use when the recipient signals close (thanks / got it / we're good / drive safe), or asks to stop. After calling end_call, stay silent.",
         "parameters": {
             "type": "object",
             "properties": {},

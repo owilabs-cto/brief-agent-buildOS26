@@ -4,7 +4,7 @@ Voice-first VC meeting prep that compresses the 50–100h of fund/partner/portfo
 
 Built for the Telus Most Trustworthy Agentic System cash prize, 2026-05-14.
 
-## Architecture (OWI-106 — Slack-first pivot)
+## Architecture (Slack-first pivot)
 
 - **`/brief`** (Rust/Axum) — Responses-API orchestrator. `gpt-5.5`, `reasoning.effort=medium`, 7-LAWS system prompt, parallel function-calling across the 6 data tools, structured-output JSON `{brief, phone_brief, drill_down_facts, audit_trail, do_not_claim, warnings}`.
 - **`/slack/commands/brief`** — Slack slash command receiver. HMAC-verified. Calls `/brief`, posts to Slack (main message + threaded audit trail), then places an outbound Twilio call bridged to OpenAI Realtime SIP with the prepared brief baked into the session instructions.
@@ -14,7 +14,7 @@ Built for the Telus Most Trustworthy Agentic System cash prize, 2026-05-14.
   - `search_gmail` — recency-flagged threads (>90d = historical)
   - `web_search` — fund / partner / portfolio queries (Tavily + DDG fallback)
   - `web_fetch` — URL drill-down
-  - `linear_query` — scoped to Multi-provider voice agent + PLAN-002 projects only
+  - `linear_query` — scoped to a configured allowlist of Linear projects
   - `local_docs_search` — primary-source local corpus
   - `verify_claim` — 3-tier confidence verifier (Tier 1 / 2 / 3)
 - **`/session`** — legacy WebRTC ephemeral-key endpoint. Retained but unused after the Slack pivot.
@@ -32,12 +32,7 @@ Wire the Slack manifest's `/brief` Request URL + OpenAI Realtime webhook + Twili
 
 LAW #0 (sourcing absolute) + 6 mitigations against the failure modes the agent must refuse to commit:
 1. No statement without `verify_claim` returning `grounded` and `sources[]` non-empty.
-2. — 6. (mitigations enumerated in OWI-106 / OWI-107)
-
-## Linear
-
-- Project: [HACKATHON 2026-05-14 · VC Prep Intelligence Agent](https://linear.app/owilabs/project/hackathon-2026-05-14-vc-prep-intelligence-agent)
-- Issues: OWI-101 … OWI-110
+2-6. The remaining five mitigations against those failure modes.
 
 ## Run
 

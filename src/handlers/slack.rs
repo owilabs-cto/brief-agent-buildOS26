@@ -59,10 +59,10 @@ pub async fn handle_brief_command(
         })));
     }
 
-    if state.settings.frederik_phone.is_empty() {
+    if state.settings.destination_phone.is_empty() {
         return Ok(Json(json!({
             "response_type": "ephemeral",
-            "text": "APP__OWI_FREDERIK_PHONE is not set on the server. Set it before invoking `/brief`.",
+            "text": "APP__DESTINATION_PHONE is not set on the server. Set it before invoking `/brief`.",
         })));
     }
 
@@ -89,7 +89,7 @@ pub async fn handle_brief_command(
     Ok(Json(json!({
         "response_type": "in_channel",
         "text": format!(
-            ":brain: Brief en cours sur *{fund}*… j'appelle Frederik dans ~30s. (demande de <@{}>)",
+            ":brain: Brief en cours sur *{fund}*… j'appelle dans ~30s. (demande de <@{}>)",
             cmd.user_id
         ),
     })))
@@ -192,7 +192,7 @@ async fn run_brief_pipeline(
         state.settings.twilio.clone(),
     );
     let outbound = match client
-        .twilio_create_outbound_call(&state.settings.frederik_phone)
+        .twilio_create_outbound_call(&state.settings.destination_phone)
         .await
     {
         Ok(v) => v,

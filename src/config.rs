@@ -30,7 +30,7 @@ pub struct SlackConfig {
 pub struct Settings {
     pub port: u16,
     pub brief_self_url: String,
-    pub frederik_phone: String,
+    pub destination_phone: String,
     pub openai_realtime: OpenAiRealtimeConfig,
     pub twilio: TwilioConfig,
     pub slack: SlackConfig,
@@ -80,7 +80,7 @@ impl Settings {
                 .unwrap_or(true),
         };
 
-        let frederik_phone = env::var("APP__OWI_FREDERIK_PHONE").unwrap_or_default();
+        let destination_phone = env::var("APP__DESTINATION_PHONE").unwrap_or_default();
 
         let verify_webhook_signature = env::var("APP__OPENAI_REALTIME__VERIFY_SIGNATURE")
             .map(|v| v == "true" || v == "1")
@@ -89,7 +89,7 @@ impl Settings {
         Self {
             port,
             brief_self_url,
-            frederik_phone,
+            destination_phone,
             openai_realtime,
             twilio,
             slack,
