@@ -1,0 +1,48 @@
+{
+  "thread_id": "FIXTURE_thread_001_northwind_ventures",
+  "permalink": "https://mail.google.com/mail/u/0/#inbox/FIXTURE_thread_001",
+  "subject": "Introduction - Example Co",
+  "labels": ["Inbox", "Northwind", "External"],
+  "participants": [
+    "Alex Connector <alex@accelerator.example>",
+    "Jordan Partner <jordan.partner@northwind-ventures.example>",
+    "Sam Founder <sam@example-co.example>"
+  ],
+  "first_message_date": "2026-04-21T12:11:00-04:00",
+  "last_message_date": "2026-04-23T10:25:00-04:00",
+  "message_count": 4,
+  "recency_flag": "fresh",
+  "extracted_at": "2026-05-14T15:10:00Z",
+  "vc_intent_note": "Warm intro from an accelerator director (Alex Connector) to a Northwind Ventures partner (Jordan Partner). Connector frames the company, founder replies with deck and calendar link, partner forwards internally to a relevant operator. Good signal: thread is fresh (<30d) and double-replied. Agent should surface: warm intro is intact, partner-level engagement, no follow-up yet from operator side — that's the open thread to close.",
+  "messages": [
+    {
+      "msg_id": "fixture-thread-001-msg-1",
+      "from": "Alex Connector <alex@accelerator.example>",
+      "to": ["Jordan Partner", "Sam Founder"],
+      "date": "2026-04-21T12:11:00-04:00",
+      "body_verbatim": "Hi Jordan,\n\nQuick intro — Sam (in CC) is building Example Co, a developer-facing agent platform I think maps cleanly to your B2B infra thesis. They just shipped a wedge product with a couple of design-partner contracts and are starting initial fundraising conversations.\n\nI'll let Sam take it from here with the deck and a calendar link.\n\nBest,\nAlex\n\n--\nAlex Connector\nDirector, Partnerships\nExample Accelerator"
+    },
+    {
+      "msg_id": "fixture-thread-001-msg-2",
+      "from": "Sam Founder <sam@example-co.example>",
+      "to": ["Jordan Partner", "Alex Connector"],
+      "date": "2026-04-21T12:55:00-04:00",
+      "body_verbatim": "Hi Jordan — great to meet you, and thanks Alex for the intro.\n\nQuick context on Example Co: we're a small team building an agent platform for B2B workflows where reliability matters more than novelty. Live with two design partners today, both on annual contracts. Our wedge is a domain-specific agent that compresses 50+ hours of manual analyst work into minutes, with every output sourced.\n\nI'm attaching our deck and a sample report. Happy to walk you through it whenever works — calendar link below.\n\nDeck: example-co-deck.pdf (attached)\nCalendar: https://cal.example/sam\n\nLooking forward to it,\nSam\n\n--\nSam Founder\nCEO, Example Co",
+      "attachments": ["example-co-deck.pdf"]
+    },
+    {
+      "msg_id": "fixture-thread-001-msg-3",
+      "from": "Jordan Partner <jordan.partner@northwind-ventures.example>",
+      "to": ["Sam Founder", "Alex Connector"],
+      "date": "2026-04-22T09:14:00-04:00",
+      "body_verbatim": "Hi both,\n\nAlex, thanks for the intro. Sam — I've forwarded your note to Morgan Operator on our team, who leads our diligence on the agent infra category. They'll reach out directly if there's appetite for a first call.\n\nHave a good week,\nJordan\n\n--\nJordan Partner\nPartner, Northwind Ventures\nnorthwind-ventures.example"
+    },
+    {
+      "msg_id": "fixture-thread-001-msg-4",
+      "from": "Sam Founder <sam@example-co.example>",
+      "to": ["Jordan Partner"],
+      "date": "2026-04-23T10:25:00-04:00",
+      "body_verbatim": "Thanks Jordan — appreciate the forward. I'll keep an eye out for Morgan's note and stay close.\n\nSam"
+    }
+  ]
+}

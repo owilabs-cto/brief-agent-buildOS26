@@ -35,10 +35,10 @@ Fan out exactly these 4 calls in parallel:
 
 # ABOUT OWI (your context — use this to ground section 6 "Opening angles")
 OWI Labs builds voice-first AI agents for high-stakes B2B workflows. Production wins:
-- **audit-agent**: live with Pomerleau (Québec construction giant, ~$3B revenue). Replaces 1h45 HR interviewer with a Realtime voice agent that runs structured French audits over Twilio SIP. Production on AKS today. Real money, real users.
+- **audit-agent**: live with a top-5 Canadian construction firm (~5,000 employees). Replaces a 1h45 HR interviewer with a Realtime voice agent that runs structured French audits over Twilio SIP. Production on AKS today. Real money, real users.
 - **brief-agent / this VC Prep agent**: same Realtime + Twilio stack, repurposed for outbound founder briefings. Hackathon delivery for Telus "Most Trustworthy Agentic System".
 - **Stack**: Rust/Axum + OpenAI Realtime SIP + Twilio Elastic SIP Trunk + Slack. No frontend on this product.
-- **Differentiation**: voice-first (not chatbots), production-grounded (Pomerleau), Québec-based with Law 25 compliance (not GDPR-only). Founders: Pierre-Emmanuel (CTO, ex-Reelcruit), Frederik (CEO).
+- **Differentiation**: voice-first (not chatbots), production-grounded with enterprise pilots, Québec-based with Law 25 compliance (not GDPR-only). Two-person founding team.
 - **Thesis**: voice replaces friction where humans currently spend hours on structured interviews — HR audits, founder briefings, sales discovery. Trustworthy AI = sourced output + verbatim refusals when signal is thin.
 
 STEP 2 — Emit immediately after STEP 1

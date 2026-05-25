@@ -1,0 +1,26 @@
+{
+  "thread_id": "FIXTURE_thread_003_meridian_capital",
+  "permalink": "https://mail.google.com/mail/u/0/#label/Meridian/FIXTURE_thread_003",
+  "subject": "Pitch Deck — Example Co",
+  "labels": ["Meridian"],
+  "participants": [
+    "Sam Founder <sam@example-co.example>",
+    "Casey Investor <casey@meridian-capital.example>"
+  ],
+  "first_message_date": "2026-04-17T10:33:00-04:00",
+  "last_message_date": "2026-04-17T10:33:00-04:00",
+  "message_count": 1,
+  "recency_flag": "fresh",
+  "extracted_at": "2026-05-14T15:13:00Z",
+  "vc_intent_note": "One-way thread: pitch deck sent to Casey (Meridian Capital) on 2026-04-17. No reply received. 27 days since send — within fresh window but stalled. For VC brief, agent should flag: 'Pitch deck delivered, no reply in 27 days. Either deal cold or partner unavailable — verify before next outreach.' Good signal for the agent's stale-thread heuristic: thread exists but has no response.",
+  "messages": [
+    {
+      "msg_id": "fixture-thread-003-msg-1",
+      "from": "Sam Founder <sam@example-co.example>",
+      "to": ["casey@meridian-capital.example"],
+      "date": "2026-04-17T10:33:00-04:00",
+      "body_verbatim": "Hi Casey,\n\nAs discussed, attaching our deck.\n\nExample Co is an agent platform for B2B workflows. We help mid-market and enterprise customers turn manual analyst work into reliable, sourced agent runs — the agent refuses to speak any claim it cannot cite.\n\nConcretely, we combine structured user interviews with a workflow-aware execution layer to surface bottlenecks, inefficiencies, and automation opportunities. Output is a clear diagnostic with prioritized recommendations for the operator.\n\nMost useful for teams adopting AI, restructuring, or trying to decide where to focus before making big workforce decisions.\n\nHappy to walk through whenever works.\n\nThanks,\nSam\n\n--\nSam Founder\nCEO, Example Co",
+      "attachments": ["example-co-deck.pdf"]
+    }
+  ]
+}

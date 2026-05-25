@@ -1,0 +1,25 @@
+{
+  "thread_id": "FIXTURE_thread_002_summit_build_day",
+  "permalink": "https://mail.google.com/mail/u/0/#inbox/FIXTURE_thread_002",
+  "subject": "You're in — welcome to Summit Build Day",
+  "labels": ["Inbox", "Summit", "External"],
+  "participants": [
+    "Robin Organizer <robin@summit-build-day.example>",
+    "Sam Founder <sam@example-co.example> (bcc)"
+  ],
+  "first_message_date": "2026-05-07T16:17:00-04:00",
+  "last_message_date": "2026-05-07T16:17:00-04:00",
+  "message_count": 1,
+  "recency_flag": "fresh",
+  "extracted_at": "2026-05-14T15:11:00Z",
+  "vc_intent_note": "Operational/logistics thread — Robin Organizer is the program lead for Summit Build Day, a one-day startup builder competition. This is NOT an investment dialogue thread. Relationship status: ecosystem partner via event participation. For VC pitch prep, agent should surface: no direct investment conversation in this thread; entry point would be Robin or via the event's investor partner cohort.",
+  "messages": [
+    {
+      "msg_id": "fixture-thread-002-msg-1",
+      "from": "Robin Organizer <robin@summit-build-day.example>",
+      "to": ["bcc: Sam Founder"],
+      "date": "2026-05-07T16:17:00-04:00",
+      "body_verbatim": "Hi,\n\nCongratulations — your team is in. Welcome to Summit Build Day.\n\nQuick highlights:\n\n— WHAT YOU'RE WALKING INTO —\n\nA one-day build competition. Teams show up with a real startup problem, build a working agentic system in five hours, and pitch it to a jury. No pre-built work. Builders only at tables.\n\n— ONE THING TO DO NOW —\n\nYou'll submit your project on event day through our submission platform. Registration link arrives in the next email. Please complete it before the event day deadline.\n\n— KEY DATES —\n\nEmail #2 — Event Brief & Platform Onboarding (arriving soon): challenge context, tools to have ready, pitch format, prize structure.\nEmail #3 — Final Logistics: agenda, room assignment, venue details.\nEvent day: arrive 8:15 AM to set up. Build window 9:20 AM – 2:20 PM. Preliminary pitches 2:30 PM. Final pitches 4:00 PM. Networking 5:00 PM.\n\nI'll be your main point of contact through event day. Reply to this email for anything.\n\nSee you on the build floor,\nRobin\n\n--\nRobin Organizer\nProgram Lead, Summit Build Day"
+    }
+  ]
+}
